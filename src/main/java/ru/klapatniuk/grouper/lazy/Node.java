@@ -1,7 +1,6 @@
 package ru.klapatniuk.grouper.lazy;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author Viacheslav Klapatniuk
@@ -9,20 +8,9 @@ import java.util.stream.Collectors;
 public class Node {
 
     private final Map<Integer, Node> children = new HashMap<>();
-    private final Group group = new Group();
+    private final Set<Word> group = new HashSet<>();
 
     private Word temp;
-
-    private Node() {
-    }
-
-    public static Node newRoot() {
-        return new Node();
-    }
-
-    public void buildAll(Collection<Word> words) {
-        words.forEach(this::build);
-    }
 
     public void build(Word word) {
         if (temp == null) {
@@ -47,7 +35,11 @@ public class Node {
 
         List<Set<String>> result = new ArrayList<>();
         if (!group.isEmpty()) {
-            result.add(group.getWords().stream().map(Word::getOriginal).collect(Collectors.toSet()));
+            Set<String> strings = new HashSet<>();
+            for (Word word : group) {
+                strings.add(word.getOriginal());
+            }
+            result.add(strings);
         }
 
         for (Node child : children.values()) {

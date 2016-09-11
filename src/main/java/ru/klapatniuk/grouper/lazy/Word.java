@@ -8,34 +8,27 @@ import java.util.*;
 public class Word {
 
     private final String original;
-    private final char[] lower;
-    private final NavigableSet<Integer> characters;
-    private final Map<Integer, Integer> hashes;
+    private final String lower;
+    private final NavigableSet<Character> characters;
+    private final Map<Character, Integer> hashes;
 
-    private Word(String original) {
+    public Word(String original) {
         this.original = original;
-        this.lower = new char[original.length()];
+        this.lower = original.toLowerCase();
         this.characters = new TreeSet<>();
         this.hashes = new HashMap<>();
 
-        int cursor = 0;
-        int character;
-        for (char letter : original.toCharArray()) {
-            character = lower[cursor++] = Character.toLowerCase(letter);
-            if (characters.add(character)) {
-                hashes.put(character, character);
+        for (char letter : lower.toCharArray()) {
+            if (characters.add(letter)) {
+                hashes.put(letter, (int) letter);
             } else {
-                hashes.put(character, hashes.get(character) * 31 + character);
+                hashes.put(letter, hashes.get(letter) * 31 + letter);
             }
         }
     }
 
-    public static Word valueOf(String value) {
-        return new Word(value);
-    }
-
     public Integer pollFirstCharacterHash() {
-        Integer character = characters.pollFirst();
+        Character character = characters.pollFirst();
         if (character == null) {
             return null;
         }
@@ -51,12 +44,12 @@ public class Word {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Word word = (Word) o;
-        return Arrays.equals(lower, word.lower);
+        return lower.equals(word.lower);
 
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(lower);
+        return lower.hashCode();
     }
 }

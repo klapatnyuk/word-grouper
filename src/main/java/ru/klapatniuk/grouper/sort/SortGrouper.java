@@ -14,9 +14,11 @@ public class SortGrouper implements Grouper {
 
         Map<String, Set<String>> groups = new HashMap<>();
 
+        Set<String> filtered = new HashSet<>(Arrays.asList(strings));
+
         String original;
         char[] chars;
-        for (String string : strings) {
+        for (String string : filtered) {
 
             // lower case
             string = string.toLowerCase();

@@ -8,29 +8,32 @@ import java.util.*;
 class Word {
 
     private final String lower;
-    private final NavigableSet<Character> characters;
-    private final Map<Character, Integer> hashes;
 
-    Word(String original) {
-        this.lower = original.toLowerCase();
-        this.characters = new TreeSet<>();
-        this.hashes = new HashMap<>();
+    private int hash;
+    private NavigableSet<Character> characters;
+    private Map<Character, Integer> hashes;
 
-        for (char letter : lower.toCharArray()) {
-            if (characters.add(letter)) {
-                hashes.put(letter, (int) letter);
-            } else {
-                hashes.put(letter, hashes.get(letter) * 31 + letter);
-            }
-        }
+    Word(String lower) {
+        this.lower = lower;
     }
 
     Integer pollFirstCharacterHash() {
-        Character character = characters.pollFirst();
-        if (character == null) {
+        if (characters == null) {
+            characters = new TreeSet<>();
+            hashes = new HashMap<>();
+
+            for (char letter : lower.toCharArray()) {
+                if (characters.add(letter)) {
+                    hashes.put(letter, (int) letter);
+                } else {
+                    hashes.put(letter, hashes.get(letter) * 31 + letter);
+                }
+            }
+        }
+        if (characters.isEmpty()) {
             return null;
         }
-        return hashes.get(character);
+        return hashes.get(characters.pollFirst());
     }
 
     @Override
@@ -45,6 +48,9 @@ class Word {
 
     @Override
     public int hashCode() {
-        return lower.hashCode();
+        if (hash == 0) {
+            hash = lower.hashCode();
+        }
+        return hash;
     }
 }

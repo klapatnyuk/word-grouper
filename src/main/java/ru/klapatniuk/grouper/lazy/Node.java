@@ -8,7 +8,7 @@ import java.util.*;
 class Node {
 
     private final Map<Integer, Node> children = new HashMap<>();
-    private final Set<Word> group = new HashSet<>();
+    private final Set<String> group = new HashSet<>();
 
     private Word temp;
 
@@ -35,11 +35,7 @@ class Node {
 
         List<Set<String>> result = new ArrayList<>();
         if (!group.isEmpty()) {
-            Set<String> strings = new HashSet<>();
-            for (Word word : group) {
-                strings.add(word.toString());
-            }
-            result.add(strings);
+            result.add(group);
         }
 
         for (Node child : children.values()) {
@@ -52,7 +48,7 @@ class Node {
     private void complete(Word word) {
         Integer hash = word.pollFirstCharacterHash();
         if (hash == null) {
-            group.add(word);
+            group.add(word.toString());
             return;
         }
 

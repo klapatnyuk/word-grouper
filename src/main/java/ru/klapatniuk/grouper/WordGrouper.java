@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Viacheslav Klapatniuk
@@ -22,7 +25,9 @@ public class WordGrouper {
         StringWriter writer = new StringWriter();
         IOUtils.copy(is, writer, StandardCharsets.UTF_8);
 
-        String[] words = writer.toString().split("[^а-яА-Я]");
+        List<String> wordsList = Arrays.stream(writer.toString().split("[^а-яА-Я]")).filter(item -> !item.isEmpty())
+                .collect(Collectors.toList());
+        String[] words = wordsList.toArray(new String[wordsList.size()]);
 
         Collection<Set<String>> groups;
 

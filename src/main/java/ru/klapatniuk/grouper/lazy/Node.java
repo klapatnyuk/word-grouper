@@ -8,7 +8,7 @@ import java.util.*;
 class Node {
 
     private final Map<Integer, Node> children = new HashMap<>();
-    private final Set<String> group = new HashSet<>();
+    private final List<String> group = new ArrayList<>();
 
     private Word temp;
 
@@ -28,12 +28,12 @@ class Node {
         complete(word);
     }
 
-    List<Set<String>> getFlatGroups() {
+    List<List<String>> getFlatGroups() {
         if (temp != null) {
-            return Collections.singletonList(Collections.singleton(temp.toString()));
+            return Collections.singletonList(Collections.singletonList(temp.toString()));
         }
 
-        List<Set<String>> result = new ArrayList<>();
+        List<List<String>> result = new ArrayList<>();
         if (!group.isEmpty()) {
             result.add(group);
         }

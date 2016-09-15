@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -29,7 +28,7 @@ public class WordGrouper {
                 .collect(Collectors.toList());
         String[] words = wordsList.toArray(new String[wordsList.size()]);
 
-        Collection<Set<String>> groups;
+        Collection<List<String>> groups;
 
         long start1 = System.currentTimeMillis();
         groups = new LazyGrouper().group(words);

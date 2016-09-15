@@ -1,12 +1,12 @@
 package ru.klapatniuk.grouper.api;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Viacheslav Klapatniuk
  */
 public interface Grouper {
 
-    Collection<Set<String>> group(String[] strings);
+    Collection<List<String>> group(String[] strings);
 }

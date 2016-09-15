@@ -10,18 +10,19 @@ import java.util.*;
 public class SortGrouper implements Grouper {
 
     @Override
-    public Collection<Set<String>> group(String[] strings) {
+    public Collection<List<String>> group(String[] strings) {
 
-        Map<String, Set<String>> groups = new HashMap<>();
+        Set<String> filtered = new HashSet<>();
+        for (String string : strings) {
+            filtered.add(string.toLowerCase());
+        }
 
-        Set<String> filtered = new HashSet<>(Arrays.asList(strings));
+        Map<String, List<String>> groups = new HashMap<>();
 
         String original;
         char[] chars;
+        List<String> group;
         for (String string : filtered) {
-
-            // lower case
-            string = string.toLowerCase();
             original = string;
 
             // sort
@@ -30,10 +31,11 @@ public class SortGrouper implements Grouper {
             string = new String(chars);
 
             // group
-            if (groups.containsKey(string)) {
-                groups.get(string).add(original);
+            group = groups.get(string);
+            if (group == null) {
+                groups.put(string, new ArrayList<>(Collections.singleton(original)));
             } else {
-                groups.put(string, new HashSet<>(Collections.singleton(original)));
+                group.add(original);
             }
         }
 

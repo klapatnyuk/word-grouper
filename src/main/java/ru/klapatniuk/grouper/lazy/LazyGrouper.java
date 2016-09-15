@@ -2,10 +2,7 @@ package ru.klapatniuk.grouper.lazy;
 
 import ru.klapatniuk.grouper.api.Grouper;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Viacheslav Klapatniuk
@@ -13,7 +10,7 @@ import java.util.Set;
 public class LazyGrouper implements Grouper {
 
     @Override
-    public Collection<Set<String>> group(String[] strings) {
+    public Collection<List<String>> group(String[] strings) {
 
         Node root = new Node();
 

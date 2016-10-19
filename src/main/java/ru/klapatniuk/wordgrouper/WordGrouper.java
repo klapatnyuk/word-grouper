@@ -1,8 +1,8 @@
-package ru.klapatniuk.grouper;
+package ru.klapatniuk.wordgrouper;
 
 import org.apache.commons.io.IOUtils;
-import ru.klapatniuk.grouper.lazy.LazyGrouper;
-import ru.klapatniuk.grouper.sort.SortGrouper;
+import ru.klapatniuk.wordgrouper.lazy.LazyGrouper;
+import ru.klapatniuk.wordgrouper.sort.SortGrouper;
 
 import java.io.IOException;
 import java.io.InputStream;

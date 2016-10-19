@@ -1,4 +1,4 @@
-package ru.klapatniuk.grouper.api;
+package ru.klapatniuk.wordgrouper.api;
 
 import java.util.Collection;
 import java.util.List;

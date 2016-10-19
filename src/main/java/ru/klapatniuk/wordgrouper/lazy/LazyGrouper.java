@@ -1,6 +1,6 @@
-package ru.klapatniuk.grouper.lazy;
+package ru.klapatniuk.wordgrouper.lazy;
 
-import ru.klapatniuk.grouper.api.Grouper;
+import ru.klapatniuk.wordgrouper.api.Grouper;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package ru.klapatniuk.grouper.lazy;
+package ru.klapatniuk.wordgrouper.lazy;
 
 import java.util.*;
 

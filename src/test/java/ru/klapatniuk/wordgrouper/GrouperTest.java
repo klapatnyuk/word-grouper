@@ -1,9 +1,9 @@
-package ru.klapatniuk.grouper;
+package ru.klapatniuk.wordgrouper;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ru.klapatniuk.grouper.lazy.LazyGrouper;
-import ru.klapatniuk.grouper.sort.SortGrouper;
+import ru.klapatniuk.wordgrouper.lazy.LazyGrouper;
+import ru.klapatniuk.wordgrouper.sort.SortGrouper;
 
 import java.util.*;
 import java.util.stream.Collectors;

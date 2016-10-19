@@ -52,11 +52,7 @@ class Node {
             return;
         }
 
-        Node child = children.get(hash);
-        if (child == null) {
-            child = new Node();
-            children.put(hash, child);
-        }
+        Node child = children.computeIfAbsent(hash, k -> new Node());
         child.build(word);
     }
 }
